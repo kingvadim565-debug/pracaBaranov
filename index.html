@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PracaPlus – oferty pracy w całej Polsce. Szukaj, filtruj i aplikuj online w minutę.">
+  <title>PracaPlus – oferty pracy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo"><span class="logo__plus">+</span>PracaPlus</a>
+      <nav class="nav">
+        <a href="#oferty">Oferty</a>
+        <a href="#jak-to-dziala">Jak aplikować</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <p class="hero__badge">Nowe oferty co tydzień</p>
+          <h1>Twoja następna praca jest <em>bliżej</em>, niż myślisz</h1>
+          <p>Od programisty po kuriera i kierowcę. Wybierz ofertę, wypełnij krótki formularz i czekaj na odpowiedź.</p>
+          <a href="#oferty" class="btn btn--accent">Przeglądaj oferty</a>
+        </div>
+        <ul class="hero__stats">
+          <li><strong id="stat-jobs">0</strong><span>ofert</span></li>
+          <li><strong id="stat-cats">0</strong><span>branż</span></li>
+          <li><strong id="stat-cities">0</strong><span>miast</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="oferty">
+      <div class="container">
+        <h2>Oferty pracy</h2>
+
+        <div class="toolbar">
+          <input type="search" id="search" placeholder="Szukaj stanowiska, firmy lub miasta..." aria-label="Szukaj ofert">
+          <select id="city" aria-label="Miasto">
+            <option value="">Wszystkie miasta</option>
+          </select>
+          <select id="sort" aria-label="Sortowanie">
+            <option value="default">Sortuj: domyślnie</option>
+            <option value="salary-desc">Najwyższe wynagrodzenie</option>
+            <option value="salary-asc">Najniższe wynagrodzenie</option>
+            <option value="title">Nazwa A–Z</option>
+          </select>
+        </div>
+
+        <div class="chips" id="chips" role="group" aria-label="Kategorie"></div>
+
+        <div class="listhead">
+          <p class="count" id="count"></p>
+          <button type="button" id="reset" class="link-btn">Wyczyść filtry</button>
+        </div>
+
+        <div class="jobs" id="jobs"></div>
+        <p class="empty" id="empty" hidden>Nie znaleziono ofert. Zmień filtry lub wyszukiwane słowo.</p>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="jak-to-dziala">
+      <div class="container">
+        <h2>Jak aplikować?</h2>
+        <ol class="steps">
+          <li>
+            <span class="steps__num">1</span>
+            <div>
+              <h3>Znajdź ofertę</h3>
+              <p>Użyj wyszukiwarki, kategorii i filtra miasta.</p>
+            </div>
+          </li>
+          <li>
+            <span class="steps__num">2</span>
+            <div>
+              <h3>Wypełnij zgłoszenie</h3>
+              <p>Imię, nazwisko, e-mail i kilka zdań o sobie.</p>
+            </div>
+          </li>
+          <li>
+            <span class="steps__num">3</span>
+            <div>
+              <h3>Sprawdź skrzynkę</h3>
+              <p>Dostaniesz potwierdzenie, a odpowiedź w ciągu kilku dni.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="kontakt">
+    <div class="container footer__inner">
+      <div>
+        <strong class="footer__brand">+PracaPlus</strong>
+        <p>Projekt szkolny. Wszystkie oferty są fikcyjne.</p>
+      </div>
+      <div>
+        <strong>Autor</strong>
+        <p>Nikita Baranov</p>
+      </div>
+      <div>
+        <strong>Kontakt</strong>
+        <p>Odpowiedź na zgłoszenie przychodzi e-mailem.</p>
+      </div>
+    </div>
+    <div class="container footer__bottom">&copy; <span id="year"></span> PracaPlus</div>
+  </footer>
+
+  <!-- Formularz zgłoszenia -->
+  <dialog id="modal" class="modal">
+    <form id="form" class="form" novalidate>
+      <button type="button" class="modal__close" id="close" aria-label="Zamknij">&times;</button>
+      <h3>Zgłoszenie na stanowisko</h3>
+      <p class="form__job" id="form-job"></p>
+
+      <div class="row">
+        <label>Imię
+          <input type="text" name="firstName" required maxlength="60" autocomplete="given-name">
+        </label>
+        <label>Nazwisko
+          <input type="text" name="lastName" required maxlength="60" autocomplete="family-name">
+        </label>
+      </div>
+
+      <label>Adres e-mail
+        <input type="email" name="email" required maxlength="120" autocomplete="email">
+      </label>
+
+      <label>O sobie
+        <textarea name="about" rows="5" required minlength="10" maxlength="1500" placeholder="Napisz, co potrafisz i dlaczego chcesz u nas pracować..."></textarea>
+      </label>
+
+      <!-- pułapka na boty -->
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <p class="form__msg" id="form-msg" role="status"></p>
+
+      <button type="submit" class="btn" id="submit">Wyślij zgłoszenie</button>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
